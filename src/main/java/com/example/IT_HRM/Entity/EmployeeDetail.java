@@ -19,8 +19,8 @@ public class EmployeeDetail {
     private String fullName;
     private String nickName;
     private String work_exp;
-    private String Ident_no;
-    private String Ident_type; // modify later
+    private String ident_no;
+    private String ident_type; // modify later
     private String bank_code;
     private String acct_code;
     private String birth_date;
@@ -31,6 +31,7 @@ public class EmployeeDetail {
     private String marital_status;
     private Long children;
     private String hobby;
+    @Enumerated(EnumType.STRING)
     private ReligionEnum religion;
     private Long age ;
     private String group_code ;
@@ -38,6 +39,4 @@ public class EmployeeDetail {
     @JoinColumn(name = "employee_id")
     @JsonIgnore
     private Employee emp_id;
-
-
 }

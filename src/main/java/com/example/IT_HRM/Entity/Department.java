@@ -12,7 +12,6 @@ public class Department extends DatetimeAuditor{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
     private Long Id;
     @Column(name = "department_code",length = 9, nullable = false)
     private String dep_code;
