@@ -1,8 +1,6 @@
 package com.example.IT_HRM.Controller;
 
 import com.example.IT_HRM.DTO.LeaveDTO;
-import com.example.IT_HRM.Entity.EmployeeDetail;
-import com.example.IT_HRM.Entity.Leave;
 import com.example.IT_HRM.Service.LeaveService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
