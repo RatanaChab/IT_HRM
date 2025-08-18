@@ -37,6 +37,5 @@ public class EmployeeDetail {
     private String group_code ;
     @OneToOne
     @JoinColumn(name = "employee_id")
-    @JsonIgnore
     private Employee emp_id;
 }

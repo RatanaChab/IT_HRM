@@ -1,6 +1,8 @@
 package com.example.IT_HRM.Entity;
 
 import com.example.IT_HRM.Enum.BranchEnum;
+import com.example.IT_HRM.Enum.EmpActEnum;
+import com.example.IT_HRM.Enum.RankEnum;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -27,10 +29,12 @@ public class Employee extends BaseEntity {
     private String sex;
     @Column(length = 9)
     private String position;
-    @Column(length = 9)
-    private String rank;    // modify later
-    @Column(length = 9)
-    private String empType;
+    @Enumerated(EnumType.STRING)
+    private RankEnum rank;
+    @Enumerated(EnumType.STRING)
+    private EmpActEnum empActive = EmpActEnum.ACTIVE;
+    @Column(length = 15)
+    private String empType ;
     @Column(length = 9,nullable = false)
     private String joinDate;
     @Column(length = 9)
@@ -38,7 +42,7 @@ public class Employee extends BaseEntity {
     @Column(length = 15)
     private String phoneNum;
     @Column(length = 9,nullable = false)
-    private String dep_code;
+    private String department;
     @OneToOne(mappedBy = "emp_id", cascade = CascadeType.ALL, orphanRemoval = true)
     private EmployeeDetail employeeDetail;
     @OneToOne(mappedBy = "employee", cascade = CascadeType.ALL, orphanRemoval = true)
