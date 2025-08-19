@@ -32,7 +32,7 @@ public class Employee extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private RankEnum rank;
     @Enumerated(EnumType.STRING)
-    private EmpActEnum empActive = EmpActEnum.ACTIVE;
+    private EmpActEnum empActive = EmpActEnum.PROBATION;
     @Column(length = 15)
     private String empType ;
     @Column(length = 9,nullable = false)
