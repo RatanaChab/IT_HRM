@@ -31,10 +31,10 @@ public class EmployeeServiceImpl implements EmployeeService {
         employee.setEntryBy("HO_IT");
         employee.setFullName(employee.getFirstName() + " " + employee.getLastName());
 
-        EmployeeDetail employeeDetail = new EmployeeDetail();
-        employeeDetail.setEmp_id(employee);
-
-        employee.setEmployeeDetail(employeeDetail);
+//        EmployeeDetail employeeDetail = new EmployeeDetail();
+//        employeeDetail.setEmp_id(employee);
+//
+//        employee.setEmployeeDetail(employeeDetail);
         return employeeRep.save(employee);
     }
 

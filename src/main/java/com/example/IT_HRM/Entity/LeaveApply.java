@@ -43,6 +43,7 @@ public class LeaveApply {
     private Long applyLeave;
     //@Column(nullable = false)
     private String reasonDetail;
-
+    @Column(name = "max_leave_days")
+    private Integer maxLeaveDays;  // Rule applies only for leaves >= this duration
 
 }

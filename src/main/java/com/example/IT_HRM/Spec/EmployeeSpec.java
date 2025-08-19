@@ -30,6 +30,7 @@ public class EmployeeSpec implements Specification<Employee> {
             Predicate branch = emp.get("branch").in(employeeFilter.getBranch());
             predicates.add(branch);
         }
+
         Predicate pred = cb.and(predicates.toArray(Predicate[]::new));
         return pred;
     }
