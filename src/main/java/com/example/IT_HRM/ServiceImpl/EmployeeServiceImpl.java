@@ -3,39 +3,43 @@ package com.example.IT_HRM.ServiceImpl;
 import com.example.IT_HRM.DTO.EmployeeDTO;
 import com.example.IT_HRM.Entity.Employee;
 import com.example.IT_HRM.Entity.EmployeeDetail;
-import com.example.IT_HRM.Enum.BranchEnum;
+import com.example.IT_HRM.GlobalException.ResourceAlreadyExistsException;
 import com.example.IT_HRM.GlobalException.ResourceNotFoundException;
 import com.example.IT_HRM.Mapper.EmployeeMapper;
+import com.example.IT_HRM.Repository.EmployeeDetailRep;
 import com.example.IT_HRM.Repository.EmployeeRep;
 import com.example.IT_HRM.Service.EmployeeService;
 import com.example.IT_HRM.Spec.EmployeeFilter;
 import com.example.IT_HRM.Spec.EmployeeSpec;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
-
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
 
     @Autowired
     private EmployeeRep employeeRep;
+    @Autowired
+    private EmployeeDetailRep employeeDetailRep;
 
     @Override
     public Employee createEmp(Employee employee) {
+        findbyempCode(employee.getEmpCode());
 
         employee.setEntryDate(LocalDateTime.now());
         employee.setEntryBy("HO_IT");
         employee.setFullName(employee.getFirstName() + " " + employee.getLastName());
 
-//        EmployeeDetail employeeDetail = new EmployeeDetail();
-//        employeeDetail.setEmp_id(employee);
-//
-//        employee.setEmployeeDetail(employeeDetail);
-        return employeeRep.save(employee);
+        EmployeeDetail employeeDetail = new EmployeeDetail();
+        employeeDetail.setEmp_code(employee.getEmpCode());
+
+        employeeRep.save(employee);
+        employeeDetailRep.save(employeeDetail);
+        return employee;
     }
 
     @Override
@@ -61,6 +65,19 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
+    public Long findbyempCode(Long id) {
+        if (id == null){
+            return null;
+        }
+
+        Employee byEmpCode = employeeRep.findByEmpCode(id);
+        if (id.equals(byEmpCode.getEmpCode())){
+            throw new ResourceAlreadyExistsException("Employee Code",id.toString());
+        }
+        return byEmpCode.getEmpCode();
+    }
+
+    @Override
     public List<Employee> getFilter(Map<String, String> params) {
         EmployeeFilter employeeFilter = new EmployeeFilter();
 
@@ -78,4 +95,5 @@ public class EmployeeServiceImpl implements EmployeeService {
         List<Employee> all = employeeRep.findAll(employeeSpec);
         return all;
     }
+
 }

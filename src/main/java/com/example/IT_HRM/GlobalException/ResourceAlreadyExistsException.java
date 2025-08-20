@@ -6,6 +6,6 @@ public class ResourceAlreadyExistsException  extends ApiException {
 
 
     public ResourceAlreadyExistsException (String resourceName, String code) {
-        super(HttpStatus.BAD_REQUEST, String.format("%s in = %s Duplicate",resourceName,code));
+        super(HttpStatus.BAD_REQUEST, String.format("%s in = %s is Exit",resourceName,code));
     }
 }

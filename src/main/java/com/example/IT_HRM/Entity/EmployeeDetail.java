@@ -8,7 +8,8 @@ import lombok.Data;
 @Entity
 @Table(name = "employeeDetails",indexes = {
         @Index(columnList = "id"),
-        @Index(columnList = "fullName")
+        @Index(columnList = "fullName"),
+        @Index(columnList = "emp_code")
 })
 @Data
 public class EmployeeDetail {
@@ -35,7 +36,6 @@ public class EmployeeDetail {
     private ReligionEnum religion;
     private Long age ;
     private String group_code ;
-    @OneToOne
-    @JoinColumn(name = "employee_id")
-    private Employee emp_id;
+    @Column(unique = true)
+    private Long emp_code;
 }
