@@ -8,4 +8,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface EmployeeRep extends JpaRepository<Employee,Long>, JpaSpecificationExecutor<Employee> {
 
+    Employee findByEmpCode( Long code );
+
 }

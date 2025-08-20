@@ -10,10 +10,12 @@ import java.util.List;
 
 @EqualsAndHashCode(callSuper = true)
 @Entity
-@Table(name = "employees")
+@Table(name = "employees",indexes = {@Index(columnList = "empCode")})
 @Data
 public class Employee extends BaseEntity {
 
+    @Column(unique = true,nullable = false)
+    private Long empCode;
     @Enumerated(EnumType.STRING)
     @Column(length = 9,nullable = false)
     private BranchEnum branch;
@@ -43,8 +45,6 @@ public class Employee extends BaseEntity {
     private String phoneNum;
     @Column(length = 9,nullable = false)
     private String department;
-    @OneToOne(mappedBy = "emp_id", cascade = CascadeType.ALL, orphanRemoval = true)
-    private EmployeeDetail employeeDetail;
     @OneToOne(mappedBy = "employee", cascade = CascadeType.ALL, orphanRemoval = true)
     private Leave leave;
     @OneToMany(mappedBy = "employeeId", cascade = CascadeType.ALL, orphanRemoval = true)

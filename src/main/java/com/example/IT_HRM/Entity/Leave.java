@@ -14,7 +14,7 @@ public class Leave {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
     @OneToOne
-    @JoinColumn(name = "employee_id")
+    @JoinColumn(name = "empCode")
     private Employee employee;
     @Column(nullable = false, scale = 3)
     private Float forwardLeave;
