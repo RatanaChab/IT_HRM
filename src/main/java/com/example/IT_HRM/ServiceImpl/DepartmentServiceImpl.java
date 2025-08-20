@@ -16,6 +16,7 @@ public class DepartmentServiceImpl implements DepartmentService {
 
     @Override
     public Department createDep(Department department) {
+        //department.setDepEnumCode(department.getDepEnumCode());
         department.setEntryBy("HO_IT06");
         department.setEntryDate(LocalDateTime.now());
         return departmentRep.save(department);
