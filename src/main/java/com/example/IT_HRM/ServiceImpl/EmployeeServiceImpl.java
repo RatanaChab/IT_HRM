@@ -16,7 +16,6 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
@@ -28,7 +27,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Employee createEmp(Employee employee) {
-        findbyempCode(employee.getEmpCode());
+        findByEmpCode(employee.getEmpCode());
 
         employee.setEntryDate(LocalDateTime.now());
         employee.setEntryBy("HO_IT");
@@ -64,12 +63,13 @@ public class EmployeeServiceImpl implements EmployeeService {
         return employeeRep.save(employee);
     }
 
-    @Override
-    public Long findbyempCode(Long id) {
-        if (id == null){
-            return null;
-        }
 
+    public Long findByEmpCode(Long id) {
+
+        if(employeeRep.findByEmpCode(id) == null){
+            return id;
+        }
+        
         Employee byEmpCode = employeeRep.findByEmpCode(id);
         if (id.equals(byEmpCode.getEmpCode())){
             throw new ResourceAlreadyExistsException("Employee Code",id.toString());
@@ -89,6 +89,11 @@ public class EmployeeServiceImpl implements EmployeeService {
         if (params.containsKey("branch")){
             String branch = params.get("branch");
             employeeFilter.setBranch(branch);
+        }
+
+        if (params.containsKey("empCode")){
+            String empCode = params.get("empCode");
+            employeeFilter.setEmpCode(empCode);
         }
 
         EmployeeSpec employeeSpec = new EmployeeSpec(employeeFilter);

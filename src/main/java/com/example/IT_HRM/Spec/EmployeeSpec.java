@@ -1,10 +1,8 @@
 package com.example.IT_HRM.Spec;
 
 import com.example.IT_HRM.Entity.Employee;
-import jakarta.persistence.criteria.CriteriaBuilder;
-import jakarta.persistence.criteria.CriteriaQuery;
-import jakarta.persistence.criteria.Predicate;
-import jakarta.persistence.criteria.Root;
+import com.example.IT_HRM.Entity.EmployeeDetail;
+import jakarta.persistence.criteria.*;
 import lombok.Data;
 import org.springframework.data.jpa.domain.Specification;
 
@@ -31,6 +29,18 @@ public class EmployeeSpec implements Specification<Employee> {
             predicates.add(branch);
         }
 
+        CriteriaQuery<EmployeeDetail>  criteriaQuery = cb.createQuery(EmployeeDetail.class);
+        Root<EmployeeDetail> fromEmpDetail = query.from(EmployeeDetail.class);
+        //CriteriaQuery<EmployeeDetail> empCode2 = criteriaQuery.select(fromEmpDetail.get("emp_code"));
+
+
+        if( Objects.nonNull(employeeFilter.getEmpCode()) ) {
+            String empCode = employeeFilter.getEmpCode();
+            Predicate empCode1 = cb.equal(fromEmpDetail.get("emp_code"), employeeFilter.getEmpCode());
+            predicates.add(empCode1);
+        }
+
+        //Predicate pred = cb.and(predicates.toArray(Predicate[]::new)).in(join);
         Predicate pred = cb.and(predicates.toArray(Predicate[]::new));
         return pred;
     }

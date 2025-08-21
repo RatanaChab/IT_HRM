@@ -45,10 +45,6 @@ public class Employee extends BaseEntity {
     private String phoneNum;
     @Column(length = 9,nullable = false)
     private String department;
-    @OneToOne(mappedBy = "employee", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Leave leave;
-    @OneToMany(mappedBy = "employeeId", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<EmployeeHis> employeeHis;
 
 }
 

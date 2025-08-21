@@ -7,4 +7,5 @@ import lombok.Data;
 public class EmployeeFilter {
     private Long Id;
     private String Branch;
+    private String empCode;
 }

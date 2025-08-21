@@ -17,5 +17,4 @@ public interface EmployeeService {
     List<Employee> getFilter(Map<String,String> params);
     Employee findbyId( Long id);
     Employee updateEmp( Long id,  EmployeeDTO employee);
-    Long findbyempCode( Long id );
 }
