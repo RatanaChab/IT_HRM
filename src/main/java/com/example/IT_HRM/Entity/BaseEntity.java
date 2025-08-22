@@ -10,7 +10,6 @@ import java.io.Serializable;
 @Data
 public abstract class BaseEntity extends DatetimeAuditor{
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false)

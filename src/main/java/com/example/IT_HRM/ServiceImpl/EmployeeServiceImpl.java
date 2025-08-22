@@ -27,14 +27,13 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Employee createEmp(Employee employee) {
-        findByEmpCode(employee.getEmpCode());
 
         employee.setEntryDate(LocalDateTime.now());
         employee.setEntryBy("HO_IT");
         employee.setFullName(employee.getFirstName() + " " + employee.getLastName());
 
         EmployeeDetail employeeDetail = new EmployeeDetail();
-        employeeDetail.setEmp_code(employee.getEmpCode());
+        employeeDetail.setEmployeeId(employee);
 
         employeeRep.save(employee);
         employeeDetailRep.save(employeeDetail);
@@ -54,28 +53,28 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public Employee updateEmp(Long id , EmployeeDTO emp) {
+    public Employee updateEmp(Long id , Employee emp) {
         Employee employee = findbyId(id);
-        EmployeeMapper.INSTANCE.updateEmployeeFromDTO(employee, emp);
-        employee.setPhoneNum(emp.getPhoneNum());
-        employee.setUpdateBy("HO_IT06");
-        employee.setUpdateDate(LocalDateTime.now());
-        return employeeRep.save(employee);
+        //EmployeeMapper.INSTANCE.updateEmployeeFromDTO(employee, emp);
+        emp.setPhoneNum(emp.getPhoneNum());
+        emp.setUpdateBy("HO_IT06");
+        emp.setUpdateDate(LocalDateTime.now());
+        return employeeRep.save(emp);
     }
 
 
-    public Long findByEmpCode(Long id) {
-
-        if(employeeRep.findByEmpCode(id) == null){
-            return id;
-        }
-        
-        Employee byEmpCode = employeeRep.findByEmpCode(id);
-        if (id.equals(byEmpCode.getEmpCode())){
-            throw new ResourceAlreadyExistsException("Employee Code",id.toString());
-        }
-        return byEmpCode.getEmpCode();
-    }
+//    public Long findByEmpCode(Long id) {
+//
+//        if(employeeRep.findByEmpCode(id) == null){
+//            return id;
+//        }
+//
+//        Employee byEmpCode = employeeRep.findByEmpCode(id);
+//        if (id.equals(byEmpCode.getEmpCode())){
+//            throw new ResourceAlreadyExistsException("Employee Code",id.toString());
+//        }
+//        return byEmpCode.getEmpCode();
+//    }
 
     @Override
     public List<Employee> getFilter(Map<String, String> params) {

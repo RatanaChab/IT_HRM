@@ -10,12 +10,12 @@ import java.util.List;
 
 @EqualsAndHashCode(callSuper = true)
 @Entity
-@Table(name = "employees",indexes = {@Index(columnList = "empCode")})
+@Table(name = "employees",indexes = {@Index(columnList = "id")})
 @Data
 public class Employee extends BaseEntity {
 
-    @Column(unique = true,nullable = false)
-    private Long empCode;
+//    @Column(unique = true,nullable = false)
+//    private Long empCode;
     @Enumerated(EnumType.STRING)
     @Column(length = 9,nullable = false)
     private BranchEnum branch;
@@ -29,7 +29,7 @@ public class Employee extends BaseEntity {
     private String localFullName;
     @Column(length = 9)
     private String sex;
-    @Column(length = 9)
+    @Column(length = 30)
     private String position;
     @Enumerated(EnumType.STRING)
     private RankEnum rank;
