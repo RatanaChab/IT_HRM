@@ -16,5 +16,5 @@ public interface EmployeeService {
     //Page<Employee> getFilter(Map<String,String> params);
     List<Employee> getFilter(Map<String,String> params);
     Employee findbyId( Long id);
-    Employee updateEmp( Long id,  EmployeeDTO employee);
+    Employee updateEmp( Long id,  Employee employee);
 }

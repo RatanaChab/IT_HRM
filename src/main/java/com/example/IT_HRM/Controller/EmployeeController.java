@@ -51,12 +51,13 @@ public class EmployeeController {
 
     @GetMapping("/employeesFilter")
     public ResponseEntity<?> getFilterEmployee(@RequestParam Map<String,String> params){
-        List<EmployeeDTO> filter = employeeService.getFilter(params).stream().map(employeeMapper::employeeToDTO).toList();
-        return ResponseEntity.ok(filter);
+        //List<EmployeeDTO> filter = employeeService.getFilter(params).stream().map(employeeMapper::employeeToDTO).toList();
+        List<Employee> list = employeeService.getFilter(params).stream().toList();
+        return ResponseEntity.ok(list);
     }
 
     @PutMapping("/employee/update/{id}")
-    public ResponseEntity<?> updateEmployee(@PathVariable Long id, @RequestBody EmployeeDTO employee){
+    public ResponseEntity<?> updateEmployee(@PathVariable Long id, @RequestBody Employee employee){
         Employee employee1 = employeeService.updateEmp(id, employee);
         return ResponseEntity.ok(employeeMapper.employeeToDTO(employee1));
     }

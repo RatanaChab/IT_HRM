@@ -9,7 +9,7 @@ import lombok.Data;
 @Table(name = "employeeDetails",indexes = {
         @Index(columnList = "id"),
         @Index(columnList = "fullName"),
-        @Index(columnList = "emp_code")
+        @Index(columnList = "employeeId")
 })
 @Data
 public class EmployeeDetail {
@@ -36,6 +36,7 @@ public class EmployeeDetail {
     private ReligionEnum religion;
     private Long age ;
     private String group_code ;
-    @Column(unique = true)
-    private Long emp_code;
+    @OneToOne
+    @JoinColumn(name = "employee_id")
+    private Employee employeeId;
 }
