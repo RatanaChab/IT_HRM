@@ -6,4 +6,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface BankcodeRep extends JpaRepository<BankCode,Long> {
+
+    boolean existsByBankCode(String BankCode);
+    boolean existsByBankName(String BankName);
 }

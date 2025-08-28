@@ -23,13 +23,13 @@ public class BankCode {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
     @Column(nullable = false,length = 9,unique = true)
-    private String bank_code;
+    private String bankCode;
     @Column(nullable = false,length = 100,unique = true)
-    private String bank_name;
+    private String bankName;
     @Column(nullable = false,length = 100,unique = true)
-    private String bank_kh;
+    private String bankKh;
     @Column(nullable = false,length = 4)
-    private String bank_other;
+    private String bankOther;
     @CreatedBy
     private String entryBy;
     @CreatedDate
