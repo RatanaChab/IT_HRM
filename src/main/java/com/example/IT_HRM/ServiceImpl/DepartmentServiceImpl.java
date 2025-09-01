@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -31,4 +32,11 @@ public class DepartmentServiceImpl implements DepartmentService {
         department.setEntryDate(LocalDateTime.now());
         return departmentRep.save(department);
     }
+
+    @Override
+    public List<Department> findAllDep() {
+        return departmentRep.findAll();
+    }
+
+
 }

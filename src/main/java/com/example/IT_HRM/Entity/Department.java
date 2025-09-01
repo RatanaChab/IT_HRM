@@ -20,7 +20,4 @@ public class Department extends DatetimeAuditor{
     private String departmentCode ;
     @Column(name = "depart_name", nullable = false,unique = true)
     private String departmentName;
-    @OneToMany
-    @JoinColumn(name = "department_id")
-    private List<Employee> employees;
 }
