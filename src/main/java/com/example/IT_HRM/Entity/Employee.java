@@ -43,8 +43,14 @@ public class Employee extends BaseEntity {
     private String resignDate;
     @Column(length = 15)
     private String phoneNum;
-    @Column(length = 9,nullable = false)
+    //@ManyToOne(fetch = FetchType.LAZY,cascade=CascadeType.ALL)
+//    @JoinColumns({
+//            @JoinColumn(name="department_id", nullable=false, referencedColumnName="id"),
+//            @JoinColumn(name="department_code", nullable=false,  referencedColumnName="depart_code")
+//    })
+    @JoinColumn(name="department_code", nullable=false)
     private String department;
 
 }
+
 

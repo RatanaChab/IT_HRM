@@ -19,6 +19,7 @@ public class LeaveApply {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
+    @SequenceGenerator(name = "seqNo", sequenceName = "seqNo")
     private Long seqNo;
     @Column(nullable = false)
     private Long employeeId;
@@ -35,7 +36,7 @@ public class LeaveApply {
     //@Column(nullable = false)
     private BranchEnum branch;
     //@Column(nullable = false)
-    private Long actualDay;
+    private Float actualDay;
     //@Column(nullable = false)
     private Boolean forwardYN;
     //@Column(nullable = false)

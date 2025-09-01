@@ -1,5 +1,6 @@
 package com.example.IT_HRM.ServiceImpl;
 
+import com.example.IT_HRM.Entity.Leave;
 import com.example.IT_HRM.Entity.LeaveApply;
 import com.example.IT_HRM.Repository.LeaveApplyRep;
 import com.example.IT_HRM.Repository.LeaveRep;
@@ -21,10 +22,17 @@ public class LeaveApplyServiceImpl implements LeaveApplyService {
 
     @Override
     public LeaveApply Create(LeaveApply leaveApply) {
-        leaveService.getById(leaveApply.getEmployeeId());
+        Leave leaveId = leaveService.getById(leaveApply.getEmployeeId());
+
+        //leaveId.getTotalLeave().compareTo();
+
+       // System.out.println(i);
         leaveApply.setFromDate(LocalDate.now());
         leaveApply.setToDate(LocalDate.now());
-        return leaveApplyRep.save(leaveApply);
+
+
+        return null;
+        //return leaveApplyRep.save(leaveApply);
     }
 }
 
