@@ -18,7 +18,7 @@ public class ApplyLeaveServiceImpl implements ApplyLeaveService {
 
     @Override
     public LeaveApply applySave(LeaveApply apply) {
-        Leave byId = leaveService.getById(apply.getId());
+        //Leave byId = leaveService.get
 
 
 

@@ -10,16 +10,15 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "leave_apply", indexes = {
-        @Index(columnList = "id"),
+        @Index(columnList = "employeeId"),
         @Index(columnList = "seqNo")
 })
 @Data
 public class LeaveApply {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Id;
-    @SequenceGenerator(name = "seqNo", sequenceName = "seqNo")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "seqNo")
+    @SequenceGenerator(name = "seqNo", sequenceName = "seqNo", initialValue = 1, allocationSize = 1 )
     private Long seqNo;
     @Column(nullable = false)
     private Long employeeId;
@@ -46,5 +45,7 @@ public class LeaveApply {
     private String reasonDetail;
     @Column(name = "max_leave_days")
     private Integer maxLeaveDays;  // Rule applies only for leaves >= this duration
-
+    @OneToOne
+    @JoinColumn(name = "Id")
+    private ApprovalContent approvalContent;
 }

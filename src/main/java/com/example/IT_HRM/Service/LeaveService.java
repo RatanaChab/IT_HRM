@@ -12,4 +12,7 @@ public interface LeaveService {
     List<LeaveDTO> ListLeave();
 
     Leave getById( Long Id);
+
+    Leave getByEmployee( Long emp ) ;
+
 }

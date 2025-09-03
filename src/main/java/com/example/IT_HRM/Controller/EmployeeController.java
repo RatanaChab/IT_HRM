@@ -1,9 +1,11 @@
 package com.example.IT_HRM.Controller;
 
 import com.example.IT_HRM.DTO.EmployeeDTO;
+import com.example.IT_HRM.Entity.ApprovalGroup;
 import com.example.IT_HRM.Entity.Employee;
 import com.example.IT_HRM.Entity.EmployeeDetail;
 import com.example.IT_HRM.Mapper.EmployeeMapper;
+import com.example.IT_HRM.Service.ApprovalGroupService;
 import com.example.IT_HRM.Service.EmployeeDetailService;
 import com.example.IT_HRM.Service.EmployeeService;
 import lombok.AllArgsConstructor;
@@ -27,6 +29,7 @@ public class EmployeeController {
 
     private final EmployeeService employeeService;
     private final EmployeeDetailService employeeDetailService;
+    private final ApprovalGroupService approvalGroupService;
     //@Autowired
     private final EmployeeMapper employeeMapper;
 
@@ -62,5 +65,11 @@ public class EmployeeController {
         return ResponseEntity.ok(employeeMapper.employeeToDTO(employee1));
     }
 
+
+    @PostMapping("/api/approval_group/")
+    public ResponseEntity<?> saveApprovalGroup(@RequestBody ApprovalGroup group){
+
+        return ResponseEntity.ok(approvalGroupService.create(group));
+    }
 
 }
