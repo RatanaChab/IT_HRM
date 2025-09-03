@@ -1,16 +1,14 @@
 package com.example.IT_HRM.ServiceImpl;
 
 import com.example.IT_HRM.DTO.LeaveDTO;
+import com.example.IT_HRM.Entity.Employee;
 import com.example.IT_HRM.Entity.Leave;
 import com.example.IT_HRM.GlobalException.ResourceNotFoundException;
 import com.example.IT_HRM.Mapper.LeaveMapper;
-import com.example.IT_HRM.Repository.EmployeeRep;
 import com.example.IT_HRM.Repository.LeaveRep;
 import com.example.IT_HRM.Service.EmployeeService;
 import com.example.IT_HRM.Service.LeaveService;
 import com.example.IT_HRM.Utils.CommonUse;
-import lombok.AllArgsConstructor;
-import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -46,4 +44,15 @@ public class LeaveServiceImpl implements LeaveService {
     public Leave getById(Long Id) {
         return leaveRep.findById(Id).orElseThrow(() -> new ResourceNotFoundException("Information",Id));
     }
+
+    @Override
+    public Leave getByEmployee(Long emp) {
+        Employee employee = employeeService.findbyId(emp);
+
+        //leaveRep.findAll().stream().map(Leave::getEmployee).allMatch(emp).
+
+        return leaveRep.findByEmployee(employee).orElseThrow(() -> new ResourceNotFoundException("Employee",emp));
+    }
+
+
 }
