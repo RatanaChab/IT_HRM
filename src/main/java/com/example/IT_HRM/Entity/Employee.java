@@ -48,8 +48,13 @@ public class Employee extends BaseEntity {
 //            @JoinColumn(name="department_id", nullable=false, referencedColumnName="id"),
 //            @JoinColumn(name="department_code", nullable=false,  referencedColumnName="depart_code")
 //    })
-    @JoinColumn(name="department_code", nullable=false)
-    private String department;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "group_code", referencedColumnName = "group_code")
+    private ApprovalGroup group;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="depart_code", referencedColumnName = "depart_code")
+    private Department department;
 
 }
 

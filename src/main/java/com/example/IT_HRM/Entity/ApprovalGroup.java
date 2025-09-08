@@ -16,18 +16,17 @@ public class ApprovalGroup {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
 
-    @Column(name = "role_name", unique = true, nullable = false)
-    private String roleName;  // e.g., "DIRECT_MANAGER", "HR_MANAGER", "DEPARTMENT_HEAD"
+    @Column(name = "group_code", nullable = false)
+    private String groupCode;  //
+
+    @Column(name = "group_name",  nullable = false)
+    private String groupName;  //
 
     @Column(name = "priority_level")
     private Integer priorityLevel;  // Determines approval sequence
 
-    // Many-to-many relationship with employees who can act in this role
-//    @OneToMany
-//    @Column(name = "user_approval")
-//    private Set<User> users;
-
     @Column(name = "description")
     private String description;
 }
+
 

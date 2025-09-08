@@ -2,6 +2,7 @@ package com.example.IT_HRM.Entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import org.springframework.boot.context.properties.bind.DefaultValue;
 
 import java.util.Set;
 
@@ -17,6 +18,9 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
     private String name;
-    @ManyToOne
-    private ApprovalGroup approvalApproval;
+    private String password;
+    @Column(name = "active_YN")
+    private String activeYn ;
+    @ManyToMany(fetch = FetchType.EAGER)
+    private Set<Role> roles;
 }

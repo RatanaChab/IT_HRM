@@ -22,9 +22,8 @@ public class UserController {
         return ResponseEntity.ok(userService.create(user));
     }
 
-//    @GetMapping("/Leave")
-//    public ResponseEntity<?> getAll(){
-//        List<LeaveDTO> leaveDTOS = leaveService.ListLeave();
-//        return ResponseEntity.ok(leaveDTOS);
-//    }
+    @GetMapping("/users")
+    public ResponseEntity<?> getAll(){
+        return ResponseEntity.ok(userService.getUsers());
+    }
 }

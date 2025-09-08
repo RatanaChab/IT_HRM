@@ -11,7 +11,7 @@ import java.util.Map;
 
 public interface EmployeeService {
 
-    Employee createEmp( Employee employee);
+    Employee createEmp( EmployeeDTO employee);
     List<Employee> getAll();
     //Page<Employee> getFilter(Map<String,String> params);
     List<Employee> getFilter(Map<String,String> params);

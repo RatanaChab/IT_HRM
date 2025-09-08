@@ -34,23 +34,23 @@ public class EmployeeController {
     private final EmployeeMapper employeeMapper;
 
     @PostMapping("/save")
-    public ResponseEntity<?> save(@RequestBody Employee employee){
+    public ResponseEntity<?> save(@RequestBody EmployeeDTO employee){
         Employee emp = employeeService.createEmp(employee);
-        return ResponseEntity.ok(employeeMapper.employeeToDTO(emp));
+        return ResponseEntity.ok(emp);
     }
 
     @GetMapping("/employee/{id}")
     public ResponseEntity<?> getById(@PathVariable Long id){
         Employee employee = employeeService.findbyId(id);
-        return ResponseEntity.ok(EmployeeMapper.INSTANCE.employeeToDTO(employee));
+        return ResponseEntity.ok(employee);
     }
 
-    @GetMapping("/employees")
-    public ResponseEntity<?> getEmployee(){
-        List<EmployeeDTO> list = employeeService.getAll().stream().map(employeeMapper::employeeToDTO).toList();
-        List<EmployeeDTO> collect = list.stream().sorted(Comparator.comparing(EmployeeDTO::getId)).collect(Collectors.toList());
-        return ResponseEntity.ok(collect);
-    }
+//    @GetMapping("/employees")
+//    public ResponseEntity<?> getEmployee(){
+//        List<EmployeeDTO> list = employeeService.getAll().stream().map(employeeMapper::employeeToDTO).toList();
+//        List<EmployeeDTO> collect = list.stream().sorted(Comparator.comparing(EmployeeDTO::getId)).collect(Collectors.toList());
+//        return ResponseEntity.ok(collect);
+//    }
 
     @GetMapping("/employeesFilter")
     public ResponseEntity<?> getFilterEmployee(@RequestParam Map<String,String> params){
@@ -62,7 +62,7 @@ public class EmployeeController {
     @PutMapping("/employee/update/{id}")
     public ResponseEntity<?> updateEmployee(@PathVariable Long id, @RequestBody Employee employee){
         Employee employee1 = employeeService.updateEmp(id, employee);
-        return ResponseEntity.ok(employeeMapper.employeeToDTO(employee1));
+        return ResponseEntity.ok(employee1);
     }
 
 
