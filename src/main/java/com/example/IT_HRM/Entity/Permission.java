@@ -3,16 +3,14 @@ package com.example.IT_HRM.Entity;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.util.Set;
-
 @Entity
+@Table(name = "permission_roles")
 @Data
-@Table(name = "roles")
-public class Role {
+public class Permission {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
     private String name;
-    @ManyToMany(fetch = FetchType.EAGER)
-    private Set<Permission> permissions;
+
 }

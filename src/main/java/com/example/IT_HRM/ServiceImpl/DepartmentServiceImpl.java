@@ -28,8 +28,6 @@ public class DepartmentServiceImpl implements DepartmentService {
                 throw new ResourceAlreadyExistsException("Department Name", department.getDepartmentName());
         }
 
-        department.setEntryBy("HO_IT06");
-        department.setEntryDate(LocalDateTime.now());
         return departmentRep.save(department);
     }
 

@@ -4,4 +4,5 @@ import com.example.IT_HRM.Entity.ApprovalGroup;
 
 public interface ApprovalGroupService {
     ApprovalGroup create( ApprovalGroup group);
+    ApprovalGroup getById( Long aLong);
 }

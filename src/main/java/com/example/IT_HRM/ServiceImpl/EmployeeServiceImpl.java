@@ -1,10 +1,8 @@
 package com.example.IT_HRM.ServiceImpl;
 
 import com.example.IT_HRM.DTO.EmployeeDTO;
-import com.example.IT_HRM.Entity.Department;
-import com.example.IT_HRM.Entity.Employee;
-import com.example.IT_HRM.Entity.EmployeeDetail;
-import com.example.IT_HRM.Entity.Leave;
+import com.example.IT_HRM.Entity.*;
+import com.example.IT_HRM.GlobalException.ApiException;
 import com.example.IT_HRM.GlobalException.ResourceAlreadyExistsException;
 import com.example.IT_HRM.GlobalException.ResourceNotFoundException;
 import com.example.IT_HRM.Mapper.EmployeeMapper;
@@ -12,16 +10,19 @@ import com.example.IT_HRM.Repository.DepartmentRep;
 import com.example.IT_HRM.Repository.EmployeeDetailRep;
 import com.example.IT_HRM.Repository.EmployeeRep;
 import com.example.IT_HRM.Repository.LeaveRep;
+import com.example.IT_HRM.Service.ApprovalGroupService;
 import com.example.IT_HRM.Service.EmployeeService;
 import com.example.IT_HRM.Service.LeaveService;
 import com.example.IT_HRM.Spec.EmployeeFilter;
 import com.example.IT_HRM.Spec.EmployeeSpec;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -33,34 +34,64 @@ public class EmployeeServiceImpl implements EmployeeService {
     private final EmployeeDetailRep employeeDetailRep;
     private final DepartmentRep departmentRep;
     private final LeaveRep leaveRep;
+    private final ApprovalGroupService approvalGroupService;
+    private final EmployeeMapper employeeMapper;
 
     @Override
-    public Employee createEmp(Employee employee) {
-
+    public Employee createEmp(EmployeeDTO employee) {
         if ( employeeRep.existsById(employee.getId())){
             throw new ResourceAlreadyExistsException("Employee Code",employee.getId().toString());
         }
 
-        employee.setEntryDate(LocalDateTime.now());
-        employee.setEntryBy("HO_IT");
-        employee.setFullName(employee.getFirstName() + " " + employee.getLastName());
+//        employeeMapper.employeeToDTO()
+//
+//        EmployeeDetail employeeDetail = new EmployeeDetail();
+//        employeeDetail.setEmployeeId();
+//
+//        Leave leave = new Leave();
+//        leave.setEmployee(employee);
+//        leave.setLeaveApply(1l);
+//        leave.setLeaveBalance(1f);
+//        leave.setForwardLeave(1f);
+//        leave.setTotalLeave(1f);
+//        leave.setLeaveTaken(1f);
+//
+//        employeeRep.save(employee);
+//        employeeDetailRep.save(employeeDetail);
+//        leaveRep.save(leave);
+//        return employee;
 
-        EmployeeDetail employeeDetail = new EmployeeDetail();
-        employeeDetail.setEmployeeId(employee);
 
-        Leave leave = new Leave();
-        leave.setEmployee(employee);
-        leave.setLeaveApply(1l);
-        leave.setLeaveBalance(1f);
-        leave.setForwardLeave(1f);
-        leave.setTotalLeave(1f);
-        leave.setLeaveTaken(1f);
-
-        employeeRep.save(employee);
-        employeeDetailRep.save(employeeDetail);
-        leaveRep.save(leave);
-        return employee;
+        return null;
     }
+
+    //    @Override
+//    public Employee createEmp(Employee employee) {
+//
+//        if ( employeeRep.existsById(employee.getId())){
+//            throw new ResourceAlreadyExistsException("Employee Code",employee.getId().toString());
+//        }
+//
+//        employee.setEntryDate(LocalDateTime.now());
+//        employee.setEntryBy("HO_IT");
+//        employee.setFullName(employee.getFirstName() + " " + employee.getLastName());
+//
+//        EmployeeDetail employeeDetail = new EmployeeDetail();
+//        employeeDetail.setEmployeeId(employee);
+//
+//        Leave leave = new Leave();
+//        leave.setEmployee(employee);
+//        leave.setLeaveApply(1l);
+//        leave.setLeaveBalance(1f);
+//        leave.setForwardLeave(1f);
+//        leave.setTotalLeave(1f);
+//        leave.setLeaveTaken(1f);
+//
+//        employeeRep.save(employee);
+//        employeeDetailRep.save(employeeDetail);
+//        leaveRep.save(leave);
+//        return employee;
+//    }
 
     @Override
     public List<Employee> getAll() {
@@ -105,17 +136,17 @@ public class EmployeeServiceImpl implements EmployeeService {
         }
 
         EmployeeSpec employeeSpec = new EmployeeSpec(employeeFilter);
-        //List<Employee> all = employeeRep.findAll(employeeSpec);
+        List<Employee> all = employeeRep.findAll(employeeSpec);
 
         Map<String, String> toMapDepartment = departmentRep.findAll().
                                 stream().collect(Collectors.toMap(Department::getDepartmentCode, Department::getDepartmentName));
-        List<Employee> employees = employeeRep.findAll(employeeSpec).stream().map( e -> {
-            e.setDepartment(toMapDepartment.getOrDefault(e.getDepartment(),"Unknown"));
-           return e;
-        }).toList();
-        System.out.println(employees);
+//        List<Employee> employees = employeeRep.findAll(employeeSpec).stream().map( e -> {
+//            e.setDepartment(toMapDepartment.getOrDefault(e.getDepartment(),"Unknown"));
+//           return e;
+//        }).toList();
+        System.out.println(all);
 
-        return employees;
+        return all;
     }
 }
 
