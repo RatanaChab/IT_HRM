@@ -42,10 +42,10 @@ public class LeaveApplyServiceImpl implements LeaveApplyService {
             throw new ApiException(HttpStatus.BAD_REQUEST,"Date Apply Must before 7 days");
         }
 
-
         Optional<LeaveApply> max = leaveApplyRep.findAll().stream().filter(l -> leaveApply.getEmployeeId().equals(l.getEmployeeId())).max(Comparator.comparing(LeaveApply::getSeqNo));
         max.stream().map(LeaveApply::getSeqNo).forEach(System.out::println);
         leaveApply.setApplyDate(LocalDateTime.now());
+        leaveApply.setEmployeeId(leaveApply.getEmployeeId());
         //return null;
 
         approvalContentRep.save(leaveApply.getApprovalContent());

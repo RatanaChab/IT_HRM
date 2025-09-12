@@ -20,7 +20,8 @@ public class LeaveApply {
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "seqNo")
     @SequenceGenerator(name = "seqNo", sequenceName = "seqNo", initialValue = 1, allocationSize = 1 )
     private Long seqNo;
-    @Column(nullable = false)
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "employeLeave",referencedColumnName = "")
     private Long employeeId;
     @Column(nullable = false,length = 50)
     private String fullName;

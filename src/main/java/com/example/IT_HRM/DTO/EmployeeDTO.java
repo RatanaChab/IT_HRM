@@ -29,6 +29,6 @@ public class EmployeeDTO {
     private String empType ;
     private String joinDate;
     private String resignDate;
-    private String group;
-    private String department;
+    private Long group;
+    private Long department;
 }

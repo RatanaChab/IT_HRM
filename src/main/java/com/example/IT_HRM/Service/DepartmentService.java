@@ -7,4 +7,5 @@ import java.util.List;
 public interface DepartmentService {
     Department createDep( Department department);
     List<Department> findAllDep();
+    Department getById( Long Id);
 }

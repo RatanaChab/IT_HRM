@@ -12,10 +12,10 @@ import java.util.List;
 @Entity
 @Table(name = "employees",indexes = {@Index(columnList = "id")})
 @Data
+@RequiredArgsConstructor
 public class Employee extends BaseEntity {
 
-//    @Column(unique = true,nullable = false)
-//    private Long empCode;
+
     @Enumerated(EnumType.STRING)
     @Column(length = 9,nullable = false)
     private BranchEnum branch;
@@ -48,11 +48,11 @@ public class Employee extends BaseEntity {
 //            @JoinColumn(name="department_id", nullable=false, referencedColumnName="id"),
 //            @JoinColumn(name="department_code", nullable=false,  referencedColumnName="depart_code")
 //    })
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "group_code", referencedColumnName = "group_code")
     private ApprovalGroup group;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name="depart_code", referencedColumnName = "depart_code")
     private Department department;
 
