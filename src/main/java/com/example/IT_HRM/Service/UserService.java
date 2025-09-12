@@ -6,6 +6,9 @@ import com.example.IT_HRM.Entity.User;
 import java.util.List;
 
 public interface UserService {
-    User create( User user );
+    User create( UserDTO user );
+    //User getByUsername( Long emp );
     List<UserDTO> getUsers();
+    List<User> allUser();
 }
+

@@ -23,4 +23,7 @@ public class User {
     private String activeYn ;
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Role> roles;
+    @OneToOne
+    @JoinColumn(name = "employee_id",referencedColumnName = "id")
+    private Employee employee;
 }

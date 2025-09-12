@@ -1,6 +1,7 @@
 package com.example.IT_HRM.Controller;
 
 import com.example.IT_HRM.DTO.LeaveDTO;
+import com.example.IT_HRM.DTO.UserDTO;
 import com.example.IT_HRM.Entity.User;
 import com.example.IT_HRM.Service.LeaveService;
 import com.example.IT_HRM.Service.UserService;
@@ -18,7 +19,7 @@ public class UserController {
     private UserService userService;
 
     @PostMapping("/save")
-    public ResponseEntity<?> save(@RequestBody User user){
+    public ResponseEntity<?> save(@RequestBody UserDTO user){
         return ResponseEntity.ok(userService.create(user));
     }
 
@@ -26,4 +27,11 @@ public class UserController {
     public ResponseEntity<?> getAll(){
         return ResponseEntity.ok(userService.getUsers());
     }
+
+    @GetMapping("/user1")
+    public ResponseEntity<?> getAllUser(){
+        return ResponseEntity.ok(userService.allUser());
+    }
+
+
 }

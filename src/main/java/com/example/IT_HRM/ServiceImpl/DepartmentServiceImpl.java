@@ -2,6 +2,7 @@ package com.example.IT_HRM.ServiceImpl;
 
 import com.example.IT_HRM.Entity.Department;
 import com.example.IT_HRM.GlobalException.ResourceAlreadyExistsException;
+import com.example.IT_HRM.GlobalException.ResourceNotFoundException;
 import com.example.IT_HRM.Repository.DepartmentRep;
 import com.example.IT_HRM.Service.DepartmentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,5 +37,9 @@ public class DepartmentServiceImpl implements DepartmentService {
         return departmentRep.findAll();
     }
 
+    @Override
+    public Department getById(Long Id) {
 
+        return departmentRep.findById(Id).orElseThrow(() -> new ResourceNotFoundException("Department",Id));
+    }
 }

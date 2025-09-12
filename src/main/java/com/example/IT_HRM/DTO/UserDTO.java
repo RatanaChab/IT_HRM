@@ -8,5 +8,6 @@ import java.util.Set;
 @Data
 public class UserDTO {
     private String username;
-    private Set<Role> roles;
+    private Long employee;
+    private Long role;
 }
