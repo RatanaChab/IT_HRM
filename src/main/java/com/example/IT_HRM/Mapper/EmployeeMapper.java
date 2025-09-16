@@ -1,5 +1,6 @@
 package com.example.IT_HRM.Mapper;
 
+import com.example.IT_HRM.DTO.DepartmentDTO;
 import com.example.IT_HRM.DTO.EmployeeDTO;
 import com.example.IT_HRM.Entity.ApprovalGroup;
 import com.example.IT_HRM.Entity.Department;
@@ -24,15 +25,17 @@ public interface EmployeeMapper {
     @Mapping(source = "department", target = "department",qualifiedByName = "stringToDep")
     Employee DTOtoEmployee(EmployeeDTO employee);
 
+    DepartmentDTO depToDepDTO( Department department);
+
 //    @Mapping(source = "entity.id", target = "id")
 //    @Mapping(source = "branch", target = "branch")
 //    void updateEmployeeFromDTO(@MappingTarget Employee employee ,EmployeeDTO employeeDTO);
 
 
-//    @Named("stringToDep")
-//    default String depToString(Department department) {
-//        return department != null ? department.getDepartmentCode() : null;
-//    }
+    @Named("DepToString")
+    default String DepToString(Department department) {
+        return department != null ? department.getDepartmentName() : null;
+    }
 
 //    @Named("stringToGroup")
 //    default String groupToString(ApprovalGroup group) {

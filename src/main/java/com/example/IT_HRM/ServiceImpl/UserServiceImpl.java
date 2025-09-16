@@ -45,6 +45,17 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User getUserId(Long Id) {
+        return userRepository.findById(Id).orElseThrow(() -> new ResourceNotFoundException("User", Id));
+    }
+
+    @Override
+    public User updateUser(User user) {
+        getUserId(user.getId());
+        return userRepository.save(user);
+    }
+
+    @Override
     public List<User> allUser() {
         List<User> users = userRepository.findAll();
 //        List<User> list1 = userRepository.findAll()
