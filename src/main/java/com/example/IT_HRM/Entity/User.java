@@ -2,6 +2,7 @@ package com.example.IT_HRM.Entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import org.hibernate.type.YesNoConverter;
 import org.springframework.boot.context.properties.bind.DefaultValue;
 
 import java.util.Set;
@@ -23,6 +24,9 @@ public class User {
     private String activeYn ;
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Role> roles;
+    @Column(name = "apprv_YN", length = 1)
+    @Convert(converter = YesNoConverter.class)
+    private Boolean appYN;
     @OneToOne
     @JoinColumn(name = "employee_id",referencedColumnName = "id")
     private Employee employee;

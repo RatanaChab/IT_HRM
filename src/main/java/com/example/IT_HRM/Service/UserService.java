@@ -10,5 +10,7 @@ public interface UserService {
     //User getByUsername( Long emp );
     List<UserDTO> getUsers();
     List<User> allUser();
+    User updateUser( User user);
+    User getUserId( Long Id );
 }
 

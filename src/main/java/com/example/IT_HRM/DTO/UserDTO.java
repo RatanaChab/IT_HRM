@@ -10,4 +10,5 @@ public class UserDTO {
     private String username;
     private Long employee;
     private Long role;
+    private String apprYN;
 }

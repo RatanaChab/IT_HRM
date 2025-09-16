@@ -35,7 +35,6 @@ public class EmployeeDetail {
     @Enumerated(EnumType.STRING)
     private ReligionEnum religion;
     private Long age ;
-    private String group_code ;
     @OneToOne
     @JoinColumn(name = "employee_id")
     private Employee employeeId;

@@ -33,5 +33,10 @@ public class UserController {
         return ResponseEntity.ok(userService.allUser());
     }
 
+    @GetMapping("/{userId}/user/update")
+    public ResponseEntity<?> updateUser(@RequestBody UserDTO user){
+        return ResponseEntity.ok(userService.allUser());
+    }
+
 
 }

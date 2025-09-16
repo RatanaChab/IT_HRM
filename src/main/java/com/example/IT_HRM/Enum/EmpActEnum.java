@@ -6,7 +6,5 @@ public enum EmpActEnum {
     PROBATION,
     PERMANENT,
     RESIGN;
-
-
 }
 
