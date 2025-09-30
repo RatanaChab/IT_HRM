@@ -2,30 +2,22 @@ package com.example.IT_HRM.ServiceImpl;
 
 import com.example.IT_HRM.DTO.EmployeeDTO;
 import com.example.IT_HRM.Entity.*;
-import com.example.IT_HRM.GlobalException.ApiException;
 import com.example.IT_HRM.GlobalException.ResourceAlreadyExistsException;
 import com.example.IT_HRM.GlobalException.ResourceNotFoundException;
 import com.example.IT_HRM.Mapper.EmployeeMapper;
-import com.example.IT_HRM.Repository.DepartmentRep;
 import com.example.IT_HRM.Repository.EmployeeDetailRep;
 import com.example.IT_HRM.Repository.EmployeeRep;
 import com.example.IT_HRM.Repository.LeaveRep;
 import com.example.IT_HRM.Service.ApprovalGroupService;
 import com.example.IT_HRM.Service.DepartmentService;
 import com.example.IT_HRM.Service.EmployeeService;
-import com.example.IT_HRM.Service.LeaveService;
 import com.example.IT_HRM.Spec.EmployeeFilter;
 import com.example.IT_HRM.Spec.EmployeeSpec;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
-import java.util.function.Function;
-import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service

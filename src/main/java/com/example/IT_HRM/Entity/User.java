@@ -21,6 +21,7 @@ public class User {
     private String name;
     private String password;
     @Column(name = "active_YN")
+    @Convert(converter = YesNoConverter.class)
     private String activeYn ;
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Role> roles;
@@ -30,4 +31,6 @@ public class User {
     @OneToOne
     @JoinColumn(name = "employee_id",referencedColumnName = "id")
     private Employee employee;
+    @Column(name = "user_group")
+    private String userGroup;
 }
