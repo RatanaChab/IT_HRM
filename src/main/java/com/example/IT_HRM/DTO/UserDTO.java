@@ -1,6 +1,7 @@
 package com.example.IT_HRM.DTO;
 
 import com.example.IT_HRM.Entity.Role;
+import com.example.IT_HRM.Entity.UserGroupId;
 import lombok.Data;
 
 import java.util.Set;
@@ -11,4 +12,5 @@ public class UserDTO {
     private Long employee;
     private Long role;
     private String apprYN;
+    private UserGroupId group;
 }

@@ -10,7 +10,9 @@ public class ProgramMenu {
     private Long Id;
     @Column(nullable = false,unique = true)
     private String menuIDN;
+    @Column(nullable = false,unique = true)
     private String menuNam;
+    @Column(nullable = false,unique = true)
     private String menuUrl;
     private String menuGroup;
     private Integer menuLv1;

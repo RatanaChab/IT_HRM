@@ -3,7 +3,6 @@ package com.example.IT_HRM.Entity;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.hibernate.type.YesNoConverter;
-import org.springframework.boot.context.properties.bind.DefaultValue;
 
 import java.util.Set;
 
@@ -22,7 +21,7 @@ public class User {
     private String password;
     @Column(name = "active_YN")
     @Convert(converter = YesNoConverter.class)
-    private String activeYn ;
+    private Boolean activeYn ;
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Role> roles;
     @Column(name = "apprv_YN", length = 1)
@@ -31,6 +30,7 @@ public class User {
     @OneToOne
     @JoinColumn(name = "employee_id",referencedColumnName = "id")
     private Employee employee;
-    @Column(name = "user_group")
-    private String userGroup;
+    @OneToOne
+    @JoinColumn(name = "groupCode",referencedColumnName = "groupCode")
+    private UserGroupId userGroup;
 }

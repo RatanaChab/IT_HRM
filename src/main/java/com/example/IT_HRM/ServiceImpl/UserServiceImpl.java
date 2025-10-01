@@ -58,6 +58,8 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> allUser() {
         List<User> users = userRepository.findAll();
+        User user = new User();
+
 //        List<User> list1 = userRepository.findAll()
 //                .stream()
 //                .map(user -> {;

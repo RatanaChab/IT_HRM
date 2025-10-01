@@ -4,6 +4,7 @@ import com.example.IT_HRM.DTO.UserDTO;
 import com.example.IT_HRM.Entity.Employee;
 import com.example.IT_HRM.Entity.Role;
 import com.example.IT_HRM.Entity.User;
+import com.example.IT_HRM.Entity.UserGroupId;
 import com.example.IT_HRM.Service.UserService;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -21,6 +22,7 @@ public interface UserMapper {
     @Mapping(source = "username", target = "name")
     @Mapping(source = "employee", target = "employee", qualifiedByName = "longToEmp")
     @Mapping(source = "role", target = "roles", qualifiedByName = "longsToRoles")
+    //@Mapping(source = "group", target = "userGroup")
     User dtoToUser(UserDTO user);
 
     @Mapping(source = "name", target = "username")
@@ -58,4 +60,12 @@ public interface UserMapper {
         }
         return roles.iterator().next().getId();  // take first role
     }
+
+//    @Named("groupToUserGroup")
+//    default UserGroupId empToLong(UserGroupId emp) {
+//        if (emp == null) return null;
+//        UserGroupId emp1 = new UserGroupId();
+//        emp1.s
+//        return emp;
+//    }
 }
