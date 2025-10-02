@@ -5,6 +5,7 @@ import com.example.IT_HRM.Repository.UserGroupRepository;
 import com.example.IT_HRM.Service.UserGroupService;
 import com.example.IT_HRM.Service.UserService;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,7 +14,8 @@ import java.util.List;
 @AllArgsConstructor
 public class UserGroupServiceImpl implements UserGroupService {
 
-    private final UserGroupRepository userGroupRepository;
+    @Autowired
+    private UserGroupRepository userGroupRepository;
 
     @Override
     public List<UserGroupId> getAll() {

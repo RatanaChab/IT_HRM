@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/hrm")
+@RequestMapping("/hrm/employee")
 @AllArgsConstructor
 //@CrossOrigin(origins = "http://localhost:5173")
 public class EmployeeController {

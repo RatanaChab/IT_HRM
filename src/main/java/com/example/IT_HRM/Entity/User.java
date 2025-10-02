@@ -30,7 +30,7 @@ public class User {
     @OneToOne
     @JoinColumn(name = "employee_id",referencedColumnName = "id")
     private Employee employee;
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "groupCode",referencedColumnName = "groupCode")
     private UserGroupId userGroup;
 }
