@@ -1,12 +1,14 @@
 package com.example.IT_HRM.Entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Convert;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import lombok.Data;
 import org.hibernate.type.YesNoConverter;
 
+@Entity
+@Data
 public class ProgramMenu {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
     @Column(nullable = false,unique = true)
     private String menuIDN;
@@ -14,7 +16,6 @@ public class ProgramMenu {
     private String menuNam;
     @Column(nullable = false,unique = true)
     private String menuUrl;
-    private String menuGroup;
     private Integer menuLv1;
     private Integer menuLv2;
     private Integer menuLv3;

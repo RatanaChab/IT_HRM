@@ -1,9 +1,11 @@
 package com.example.IT_HRM.Entity;
 
 import jakarta.persistence.*;
+import lombok.Data;
 
 @Entity
 @Table(uniqueConstraints = { @UniqueConstraint(columnNames = "groupCode")})
+@Data
 public class UserGroupId {
 
     @Id

@@ -1,8 +1,10 @@
 package com.example.IT_HRM.Entity;
 
 import jakarta.persistence.*;
+import lombok.Data;
 
 @Entity
+@Data
 public class UserGroupMenuId {
 
     @Id
