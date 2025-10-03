@@ -1,7 +1,9 @@
 package com.example.IT_HRM.Controller;
 
 import com.example.IT_HRM.Entity.ProgramMenu;
+import com.example.IT_HRM.Entity.UserGroupMenuId;
 import com.example.IT_HRM.Service.ProgramMenuService;
+import com.example.IT_HRM.Service.UserGroupMenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +17,8 @@ public class ProgramController {
 
     @Autowired
     private ProgramMenuService programMenuService;
+    @Autowired
+    private UserGroupMenuService userGroupMenuService;
 
     @PostMapping("/create")
     public ResponseEntity<?> save(@RequestBody ProgramMenu menu){
@@ -24,7 +28,8 @@ public class ProgramController {
 
     @GetMapping
     public ResponseEntity<?> getProgram(){
-        List<String> allProgram = programMenuService.getAllProgram().stream().map(p -> p.getMenuUrl()).toList();
-        return ResponseEntity.ok(programMenuService.getAllProgram());
+        List<UserGroupMenuId> all = userGroupMenuService.getAll();
+
+        return ResponseEntity.ok(all);
     }
 }
