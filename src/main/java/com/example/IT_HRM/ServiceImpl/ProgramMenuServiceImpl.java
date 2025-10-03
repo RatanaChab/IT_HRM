@@ -26,4 +26,11 @@ public class ProgramMenuServiceImpl implements ProgramMenuService {
 
         return programMenuRepository.findAll();
     }
+
+    @Override
+    public ProgramMenu getBymenuIDN(String menu) {
+        List<Boolean> list = programMenuRepository.findAll().stream().map(men -> men.getMenuIDN().equals(menu)).toList();
+
+        return null;
+    }
 }
