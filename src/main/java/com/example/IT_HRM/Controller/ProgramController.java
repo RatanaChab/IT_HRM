@@ -26,10 +26,15 @@ public class ProgramController {
         return ResponseEntity.ok(HttpStatus.CREATED);
     }
 
+    @GetMapping("/Programs/{menu}")
+    public ResponseEntity<?> getProgramFilter(@RequestParam String menu){
+        List<ProgramMenu> Menu = programMenuService.getBymenuIDN(menu);
+        return ResponseEntity.ok(Menu);
+    }
+
     @GetMapping
     public ResponseEntity<?> getProgram(){
         List<UserGroupMenuId> all = userGroupMenuService.getAll();
-
         return ResponseEntity.ok(all);
     }
 }
