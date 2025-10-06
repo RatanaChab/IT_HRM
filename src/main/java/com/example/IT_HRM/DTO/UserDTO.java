@@ -9,6 +9,7 @@ import java.util.Set;
 @Data
 public class UserDTO {
     private String username;
+    private String password;
     private Long employee;
     private Long role;
     private String apprYN;

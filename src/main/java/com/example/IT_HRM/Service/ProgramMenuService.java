@@ -7,5 +7,5 @@ import java.util.List;
 public interface ProgramMenuService {
     ProgramMenu create( ProgramMenu programMenu);
     List<ProgramMenu> getAllProgram();
-    ProgramMenu getBymenuIDN( String menu);
+    List<ProgramMenu> getBymenuIDN( String menu);
 }
