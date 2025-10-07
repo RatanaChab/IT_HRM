@@ -14,6 +14,7 @@ import com.example.IT_HRM.Service.EmployeeService;
 import com.example.IT_HRM.Service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -27,6 +28,7 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final UserMapper userMapper;
     private final EmployeeRep employeeRep;
+    private final PasswordEncoder passwordEncoder;
 
     @Override
     public User create(UserDTO userDTO) {
@@ -34,7 +36,7 @@ public class UserServiceImpl implements UserService {
         if ( userRepository.existsById(userDTO.getEmployee()) ) throw new ResourceAlreadyExistsException("Employee",userDTO.getEmployee().toString());
         if ( userRepository.existsByName(userDTO.getUsername()) ) throw new ResourceAlreadyExistsException("Employee",userDTO.getUsername());
 
-
+        passwordEncoder.encode(userDTO.getPassword());
         User user = userMapper.dtoToUser(userDTO);
         return userRepository.save(user);
     }
@@ -77,11 +79,12 @@ public class UserServiceImpl implements UserService {
 
         return users;
     }
-//    @Override
-//    public User getByUsername(Long username) {
-//        ///User byEmployee = userRepository.findByEmployee(username);
-//        return null;
-//    }
+
+    @Override
+    public Optional<User> getByUsername(String username) {
+        ///User byEmployee = userRepository.findByEmployee(username);
+        return null;
+    }
 
 //    public Long employeeToCode(Map<Employee, Long> empMap) {
 //        if (empMap == null || empMap.isEmpty()) return null;
