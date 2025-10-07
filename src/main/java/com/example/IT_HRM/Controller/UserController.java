@@ -7,6 +7,8 @@ import com.example.IT_HRM.Service.LeaveService;
 import com.example.IT_HRM.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PostAuthorize;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,6 +20,7 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    //@PostAuthorize()
     @PostMapping("/save")
     public ResponseEntity<?> save(@RequestBody UserDTO user){
         return ResponseEntity.ok(userService.create(user));
