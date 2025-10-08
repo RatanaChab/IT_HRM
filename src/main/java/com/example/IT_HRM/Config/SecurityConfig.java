@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -22,12 +23,15 @@ public class SecurityConfig{
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.authorizeHttpRequests((authz) ->
-                 authz.requestMatchers("/login","/error").hasRole("ADMIN")
-                .requestMatchers(HttpMethod.POST, "/hrm/users/**").permitAll()
-                .anyRequest().authenticated())
+        http.csrf(csrf -> csrf
+                .ignoringRequestMatchers("/hrm/users/**") // disable CSRF for API routes
+        ).authorizeHttpRequests((authz) ->
+                 authz.requestMatchers("/login","/error")
+                //.requestMatchers(HttpMethod.POST, "/hrm/users/**").permitAll()
+                .authenticated().anyRequest().authenticated())
                 .formLogin( form -> form.defaultSuccessUrl("http://localhost:8080/",true).permitAll())
-                .logout(logout -> logout.logoutSuccessUrl("/logout?logout"));
+                .logout(logout -> logout.logoutSuccessUrl("/login"))
+                .httpBasic(Customizer.withDefaults());
         return http.build();
     }
 
