@@ -38,6 +38,7 @@ public class UserServiceImpl implements UserService {
 
         passwordEncoder.encode(userDTO.getPassword());
         User user = userMapper.dtoToUser(userDTO);
+        user.setUserGroup(userDTO.getGroup());
         return userRepository.save(user);
     }
 
