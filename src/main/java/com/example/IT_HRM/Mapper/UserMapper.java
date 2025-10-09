@@ -58,14 +58,7 @@ public interface UserMapper {
         if (roles == null || roles.isEmpty()) {
             return null;
         }
-        return roles.iterator().next().getId();  // take first role
+        return roles.stream().map( Id -> Id.getId()).findFirst().get();
+        //return roles.iterator().next().getId();  // take first role
     }
-
-//    @Named("groupToUserGroup")
-//    default UserGroupId empToLong(UserGroupId emp) {
-//        if (emp == null) return null;
-//        UserGroupId emp1 = new UserGroupId();
-//        emp1.s
-//        return emp;
-//    }
 }
