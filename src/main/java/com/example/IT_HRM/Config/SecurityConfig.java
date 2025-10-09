@@ -21,17 +21,31 @@ public class SecurityConfig{
         return new BCryptPasswordEncoder(10);
     }
 
+//    @Bean
+//    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+//        http.csrf(csrf -> csrf
+//                .ignoringRequestMatchers("/hrm/users/**") // disable CSRF for API routes
+//        ).authorizeHttpRequests((authz) ->
+//                 authz.requestMatchers("/login","/error")
+//                //.requestMatchers(HttpMethod.POST, "/hrm/users/**").permitAll()
+//                .authenticated().anyRequest().authenticated())
+//                .formLogin( form -> form.defaultSuccessUrl("http://localhost:8080/",true).permitAll())
+//                .logout(logout -> logout.logoutSuccessUrl("/login"))
+//                .httpBasic(Customizer.withDefaults());
+//        return http.build();
+//    }
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.csrf(csrf -> csrf
-                .ignoringRequestMatchers("/hrm/users/**") // disable CSRF for API routes
-        ).authorizeHttpRequests((authz) ->
-                 authz.requestMatchers("/login","/error")
-                //.requestMatchers(HttpMethod.POST, "/hrm/users/**").permitAll()
-                .authenticated().anyRequest().authenticated())
-                .formLogin( form -> form.defaultSuccessUrl("http://localhost:8080/",true).permitAll())
-                .logout(logout -> logout.logoutSuccessUrl("/login"))
-                .httpBasic(Customizer.withDefaults());
+        http.csrf(Customizer.withDefaults())
+                .httpBasic(Customizer.withDefaults())
+                //.formLogin(Customizer.withDefaults())
+                .authorizeHttpRequests(auth ->
+                        auth.requestMatchers("/login").permitAll().anyRequest()
+                                .authenticated())
+                .formLogin( form -> form.loginPage("/login").permitAll())
+                .formLogin(Customizer.withDefaults());
+                        //.defaultSuccessUrl("http://localhost:8080/",true).permitAll())
         return http.build();
     }
 
