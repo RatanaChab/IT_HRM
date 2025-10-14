@@ -19,28 +19,16 @@ public interface EmployeeMapper {
     EmployeeMapper INSTANCE = Mappers.getMapper(EmployeeMapper.class);
 
 
-    //@Mapping(source = "id", target = "id", qualifiedByName = "formatId")
-    //@Mapping(source = "id", target = "id")
     @Mapping(source = "group", target = "group",qualifiedByName = "stringToGroup")
     @Mapping(source = "department", target = "department",qualifiedByName = "stringToDep")
     Employee DTOtoEmployee(EmployeeDTO employee);
 
     DepartmentDTO depToDepDTO( Department department);
 
-//    @Mapping(source = "entity.id", target = "id")
-//    @Mapping(source = "branch", target = "branch")
-//    void updateEmployeeFromDTO(@MappingTarget Employee employee ,EmployeeDTO employeeDTO);
-
-
     @Named("DepToString")
     default String DepToString(Department department) {
         return department != null ? department.getDepartmentName() : null;
     }
-
-//    @Named("stringToGroup")
-//    default String groupToString(ApprovalGroup group) {
-//        return group != null ? group.getGroupCode() : null;
-//    }
 
     @Named("stringToDep")
     default Department stringToDep(String depName) {
@@ -55,11 +43,5 @@ public interface EmployeeMapper {
         // You might need to fetch from repository
         return new ApprovalGroup() ;
     }
-//    @Named("formatId")
-//    static String formatId(String id) {
-//        //System.out.println(String.format("%04d", id));
-//        return String.format("%04d", Long.parseLong(id));
-//    }
-
 
 }

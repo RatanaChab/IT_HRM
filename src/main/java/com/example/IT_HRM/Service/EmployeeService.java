@@ -12,7 +12,7 @@ import java.util.Map;
 public interface EmployeeService {
 
     Employee createEmp( EmployeeDTO employee);
-    List<Employee> getAll();
+    List<EmployeeDTO> getAll();
     //Page<Employee> getFilter(Map<String,String> params);
     List<Employee> getFilter(Map<String,String> params);
     Employee findbyId( Long id);

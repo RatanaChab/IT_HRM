@@ -18,34 +18,21 @@ public class SecurityConfig{
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder(10);
+        return new BCryptPasswordEncoder(12);
     }
 
-//    @Bean
-//    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-//        http.csrf(csrf -> csrf
-//                .ignoringRequestMatchers("/hrm/users/**") // disable CSRF for API routes
-//        ).authorizeHttpRequests((authz) ->
-//                 authz.requestMatchers("/login","/error")
-//                //.requestMatchers(HttpMethod.POST, "/hrm/users/**").permitAll()
-//                .authenticated().anyRequest().authenticated())
-//                .formLogin( form -> form.defaultSuccessUrl("http://localhost:8080/",true).permitAll())
-//                .logout(logout -> logout.logoutSuccessUrl("/login"))
-//                .httpBasic(Customizer.withDefaults());
-//        return http.build();
-//    }
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.csrf(Customizer.withDefaults())
+        http.csrf(csrf -> csrf.disable())
                 .httpBasic(Customizer.withDefaults())
-                //.formLogin(Customizer.withDefaults())
                 .authorizeHttpRequests(auth ->
-                        auth.requestMatchers("/login").permitAll().anyRequest()
-                                .authenticated())
+                {
+                    auth.requestMatchers("/hrm/users/**").hasAnyRole("ADMIN","HR");
+                    auth.anyRequest().permitAll();
+                })
                 .formLogin( form -> form.loginPage("/login").permitAll())
                 .formLogin(Customizer.withDefaults());
-                        //.defaultSuccessUrl("http://localhost:8080/",true).permitAll())
         return http.build();
     }
 
@@ -59,4 +46,8 @@ public class SecurityConfig{
         provider.setPasswordEncoder(passwordEncoder);
         return provider;
     }
+
+
+
+
 }

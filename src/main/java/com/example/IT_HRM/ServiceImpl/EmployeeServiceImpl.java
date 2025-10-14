@@ -91,8 +91,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 //    }
 
     @Override
-    public List<Employee> getAll() {
-        return employeeRep.findAll();
+    public List<EmployeeDTO> getAll() {
+        List<EmployeeDTO> list = employeeRep.findAll().stream().map(emp -> new EmployeeDTO()).toList();
+        return list;
     }
 
     @Override

@@ -11,7 +11,7 @@ public interface UserService {
     Optional<User> getByUsername(String username );
     List<UserDTO> getUsers();
     List<User> allUser();
-    User updateUser( User user);
+    User updateUser( String user, UserDTO userDTO);
     User getUserId( Long Id );
 }
 

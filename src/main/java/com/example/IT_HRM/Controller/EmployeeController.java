@@ -37,12 +37,11 @@ public class EmployeeController {
         return ResponseEntity.ok(employee);
     }
 
-//    @GetMapping("/employees")
-//    public ResponseEntity<?> getEmployee(){
-//        List<EmployeeDTO> list = employeeService.getAll().stream().map(employeeMapper::employeeToDTO).toList();
-//        List<EmployeeDTO> collect = list.stream().sorted(Comparator.comparing(EmployeeDTO::getId)).collect(Collectors.toList());
-//        return ResponseEntity.ok(collect);
-//    }
+    @GetMapping("/employees")
+    public ResponseEntity<?> getEmployee(){
+        List<EmployeeDTO> all = employeeService.getAll();
+        return ResponseEntity.ok(all);
+    }
 
     @GetMapping("/employeesFilter")
     public ResponseEntity<?> getFilterEmployee(@RequestParam Map<String,String> params){
