@@ -28,6 +28,8 @@ public interface UserMapper {
     @Mapping(source = "name", target = "username")
     @Mapping(source = "employee", target = "employee", qualifiedByName = "empToLong")
     @Mapping(source = "roles", target = "role", qualifiedByName = "rolesToLongs")
+    @Mapping(source = "userGroup", target = "group")
+    @Mapping(source = "appYN", target = "apprYN")
     UserDTO userToDTO(User user);
 
     @Named("longToEmp")
@@ -61,4 +63,14 @@ public interface UserMapper {
         return roles.stream().map( Id -> Id.getId()).findFirst().get();
         //return roles.iterator().next().getId();  // take first role
     }
+
+//    @Named("findGroup")
+//    default Long findGroup(UserGroupId group) {
+//        if (group == null) {
+//            return null;
+//        }
+//
+//        //return roles.iterator().next().getId();  // take first role
+//    }
+
 }

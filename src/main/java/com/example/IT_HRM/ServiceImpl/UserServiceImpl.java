@@ -14,6 +14,8 @@ import com.example.IT_HRM.Service.EmployeeService;
 import com.example.IT_HRM.Service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -28,7 +30,8 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final UserMapper userMapper;
     private final EmployeeRep employeeRep;
-    private final PasswordEncoder passwordEncoder;
+    //private final PasswordEncoder passwordEncoder;
+    private final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(12);
 
     @Override
     public User create(UserDTO userDTO) {
@@ -36,8 +39,9 @@ public class UserServiceImpl implements UserService {
         if ( userRepository.existsById(userDTO.getEmployee()) ) throw new ResourceAlreadyExistsException("Employee",userDTO.getEmployee().toString());
         if ( userRepository.existsByName(userDTO.getUsername()) ) throw new ResourceAlreadyExistsException("Employee",userDTO.getUsername());
 
-        passwordEncoder.encode(userDTO.getPassword());
+//        passwordEncoder.encode(userDTO.getPassword());
         User user = userMapper.dtoToUser(userDTO);
+        user.setPassword(encoder.encode(userDTO.getPassword()));
         user.setUserGroup(userDTO.getGroup());
         return userRepository.save(user);
     }
@@ -54,9 +58,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User updateUser(User user) {
-        getUserId(user.getId());
-        return userRepository.save(user);
+    public User updateUser(String user, UserDTO userDTO) {
+        Long first = userRepository.findByName(user).stream().map(userId -> userId.getId()).toList().getFirst();
+        User userId = getUserId(first);
+        userId.setPassword(encoder.encode(userDTO.getPassword()));
+
+        return userRepository.save(userId);
     }
 
     @Override
